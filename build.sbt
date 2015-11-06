@@ -1,4 +1,4 @@
-name := """si1-lab2"""
+name := """vitrolaMusical"""
 
 version := "1.0-SNAPSHOT"
 

@@ -1,0 +1,195 @@
+@(posterList: List[models.entity.Poster], count: Long)
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	   	<meta name="description" content="Find Your Band"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    
+	    <!-- Favicon -->
+	    <link rel="shortcut icon" href=@routes.Assets.at("img/favicon.png") type="image/png">
+	    	    
+	    <!-- Bootstrap Core CSS -->
+		<link rel="stylesheet" href=@routes.Assets.at("stylesheets/bootstrap.min.css")>
+		
+		<!-- jQuery -->
+		<script src=@routes.Assets.at("javascripts/jquery.js")></script>
+		
+		<!-- Bootstrap Core JavaScript -->
+		<script type="text/javascript" src=@routes.Assets.at("javascripts/bootstrap.min.js")></script>
+				
+	    <!-- Custom CSS -->
+    	<link href=@routes.Assets.at("stylesheets/business-casual.css") rel="stylesheet">
+    	    	
+	    <!-- Fonts -->
+    	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    	<link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+		<title>Vitrola Musical - Anúncios</title>
+    </head>
+	<body>
+	
+	    <div class="brand">Vitrola Musical</div>
+	    <div class="address-bar">O Som Aqui é Garantido</div>
+	
+	    <!-- Navigation -->
+	    <nav class="navbar navbar-default" role="navigation">
+	        <div class="container">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class="navbar-header">
+	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	                    <span class="sr-only">Toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                </button>
+	                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+	                <a class="navbar-brand" href=href=@routes.Application.index()>Business Casual</a>
+	            </div>
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	                <ul class="nav navbar-nav">
+	                     <li>
+	                        <a href=@routes.Application.index()>Home</a>
+	                    </li>
+	                    <li>
+	                        <a href=@routes.Application.anuncios()>Divulgações</a>
+	                    </li>
+	                    <li>
+	                    	<a href=@routes.Application.publique()>Divulgue Aqui</a>
+	                    </li>
+	                    <li>
+	                        <a href=@routes.Application.sobre()>Sobre</a>
+	                    </li>
+	                </ul>
+	            </div>
+	            <!-- /.navbar-collapse -->
+	        </div>
+	        <!-- /.container -->
+	    </nav>
+	
+	    <div class="container">
+	        <div class="row">
+	            <div class="box">
+	                <div class="col-lg-12">
+	                    <hr>
+	                    <h2 class="intro-text text-center"><strong>Anúncios</strong> </h2>
+	                    <hr>
+	                </div>
+					 <div class="section">
+            			<div class="container">
+                			<div class="row">
+                    			<div class="col-sm-offset-2 col-md-8 text-center">
+                        			<form role="form" method="post" action=@routes.Application.searchAd()>
+                            		<div class="form-group has-feedback">
+                                		<label class="control-label">Pesquise um Anúncio Aqui</label>
+                            			<div class="input-group input-group-lg">
+                            				<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                            				<input class="form-control input-lg" name="search" placeholder="Ex: Viloao, Forró, Campina Grande, Caruaru">
+               		 				        <span class="input-group-btn">
+    											<button type="submit" class="btn btn-default">Pesquisar</button>
+  											</span>
+										</div>
+                           		 	</div>
+                            		<div class="form-group">
+                                		<div class="checkbox">
+                                    		<label class="checkbox-inline">
+                                    			<input name="titulo" value="titulo" type="checkbox">Por palavra-chave</label>
+                                			<label class="checkbox-inline">
+                                    			<input name="cidade" value="cidade" type="checkbox">Por cidade</label>
+                                    		<label class="checkbox-inline">
+                                        		<input name="instrumento" value="instrumento" type="checkbox">Por instrumento</label>
+                                    		<label class="checkbox-inline">
+                                        		<input name="estilo" value="estilo" type="checkbox">Por estilos</label>
+                                    		<label class="checkbox-inline">
+                                        		<input name="formar uma banda" value="Formar uma Banda" type="checkbox">Formar uma banda</label>
+                    		           		<label class="checkbox-inline">
+                                        		<input name="tocar ocasionalmente" value="Tocar Ocasionalmente" type="checkbox">Tocar ocasionalmente</label>
+                                		</div>
+                    				</div>
+                        			</form>
+                        			<hr>
+                        			<p class="text-center"><small>Anúncios Resolvidos: @count</small></p>
+                    			</div>
+                			</div>
+            			</div>
+        			</div>
+    			<br>
+    			<br>
+                <div class="section">
+        			<div class="container">
+            			<div class="row">
+                			<div class="col-sm-offset-1 col-md-10">
+	           				@if(flash.get("success") != null) {
+            					<div class="alert alert-success alert-dismissible text-center" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4>Anúncio <b>@flash.get("success")</b> criado com sucesso!</h4> 
+									<small>Use o código acima para finalizar este anúncio e não receber 
+									novas notificações de outros usúario sobre o mesmo.</small>
+								</div>
+							}
+							@if(flash.get("notFound") != null) {
+            					<div class="alert alert-info alert-dismissible text-center" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<b>@flash.get("notFound")</b>
+								</div>	
+							}
+            				@if(flash.get("erro") != null) {
+            					<div class="alert alert-danger alert-dismissible text-center" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<b>Erro!</b> @flash.get("erro")
+								</div>
+							}
+							@if(flash.get("adFinally") != null) {
+								<div class="alert alert-success alert-dismissible text-center" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<b>@flash.get("adFinally")</b>
+								</div>
+							} 
+	                        <table class="table table-hover">
+                            	<tbody>
+	                                @for(poster <- posterList) {
+	                                	<tr>
+	                                		<td>
+	                                			<a href=@routes.Application.anuncio(poster.getId())><b>@poster.getTitle()</b></a>
+	                                			<span class="pull-right"><small>@poster.getDateFormat()</small></span>
+	                                			<p>@poster.getResumeDesc()</p>
+	                                		</td>
+                                		</tr>
+                                	}
+	                            </tbody>
+	                        </table>
+	                    </div>
+        			</div>
+    			</div>
+    			<nav class="text-center">
+  					<ul class="pagination pagination-lg">
+    					<li><a href=@routes.Application.anuncios(1, 15, false)> << </a></li>
+    					<li><a href=@routes.Application.anuncios(Integer.parseInt(session.get("actualPage")) - 1, 15, false)>Prev</a></li>
+    					<li><a href=@routes.Application.anuncios(Integer.parseInt(session.get("actualPage")) + 1, 15, false)>Next</a></li>
+    					<li><a href=@routes.Application.anuncios(Integer.MAX_VALUE, 15, false)> >> </a></li>
+  					</ul>
+				</nav>
+			</div>    
+    	</div>
+	    <!-- /.container -->
+	
+	    <footer>
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12 text-center">
+	                    <p>Copyright &copy; Rayff Queiroga - SI1 - 2015.1</p>
+	                </div>
+	            </div>
+	        </div>
+	    </footer>	
+	</body>
+</html>
